@@ -29,9 +29,11 @@ def restador():
 
         acumulador = tmp
 
-
+momento_arranque = time.perf_counter()
 sumador()
 restador()
+momento_parada = time.perf_counter()
 
 
 print(f'El valor calculado final es: {acumulador}')
+print(f'El tiempo final de ejecución es: {momento_parada - momento_arranque: 0.5f}')

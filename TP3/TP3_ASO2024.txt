@@ -1,0 +1,48 @@
+2. 
+
+Tareas_SIN_hilos.py
+
+¿Qué se puede notar con respecto al tiempo de ejecución? ¿Es predecible?
+
+Con relación al tiempo de ejecución, se puede decir que no es predecible ya que, según la forma en que está construido el código, parte de la ejecución depende la disponibilidad de recursos que tiene la computadora. Un tiempo de ejecución variable produce tiempos de ejecución variables e impredecibles. 
+
+
+- Nombrar un proceso o función de la vida real que pueden ser considerados procesos de “máxima velocidad posible” que dependen casi exclusivamente de la velocidad de la máquina que los ejecuta (ej. Ordenar una lista).
+
+El cálculo de interacciones físicas entre objetos en la vida real para automatizar un procedimiento médico, el aterrizaje de un cohete de Space X, la conducción de un auto con inteligencia artificial, el funcionamiento del  reloj de la CPU. 
+
+
+- Nombrar un proceso o función de la vida real que pueden ser considerados procesos de “velocidad de respuesta no dependiente de la velocidad de procesamiento” o que sea de naturaleza impredecible o externa (ej. Leer un archivo externo).
+
+Algunos procesos que no dependen de la velocidad de procesamiento pueden ser la reproducción de un video, un pedido de información a un servidor externo, la descarga de un archivo, la actualización de un software, entre otros. 
+
+
+Tareas_CON_hilos.py
+
+- ¿Qué se puede notar con respecto al tiempo de ejecución? ¿Se mejoró el tiempo de respuesta con
+respecto al mismo programa sin hilos?
+
+Según las pruebas realizadas, el tiempo de ejecución mejoró notablemente ya que cada función pudo ejecutarse en un hilo aparte y la totalidad de los procesos se produjo más rápido disminuyendo en más de 2 segundos la velocidad de los mismos.
+
+- ¿Completan las funciones su ejecución en el orden establecido?
+
+No, el orden establecido varió ya que depende del tiempo de ejecución de cada función. Si una tarea toma menos tiempo que otra, esta finaliza antes. 
+
+- Nombrar un escenario real donde el multi-hilado puede mejorar considerablemente el tiempo de
+respuesta de un sistema (ej. Carga de una página WEB en un navegador)
+
+Otros escenarios donde el multi-hilado puede mejorar el tiempo de respuesta puede ser editores multimedia que permitan trabajar sobre una capa del proyecto (ejemplo: renderizado de una imagen o sonido) mientras otro proceso se realiza en otra capa del mismo (edición del tamaño o color de una imagen). También puede servir para administrar de manera simultánea diferentes pedidos a una base de datos en la nube (e-commerce o homebanking) o un sistema de monitoreo de variables dentro de una fábrica (control de temperatura, administración de energía para las máquinas, velocidad de producción, etc). 
+
+
+3- 
+
+Para verificar los tiempos de ejecución, sumé algunos ajustes al código original. Luego de correr el código varias veces y comparar los resultados entre ambas acciones, pude observar que el tiempo de ejecución del programa sumador_restador_CON_race.py fue mayor al programa sumador-restador.py.
+
+El valor final del acumulador no es constante y puede variar en diferentes ejecuciones. La inconsistencia se debe a que los hilos sumador y restador acceden simultáneamente a la variable acumulador, lo que provoca que las operaciones de incremento y decremento se intercalen de manera no controlada. Esto sucede porque el acceso a la zona crítica del recurso no está administrada y depende de factores no explicitados en el código. De esta manera, resulta muy difícil predecir cuál va a ser el resultado final del acumulador.  
+
+
+
+4-
+
+Al igual que en el punto anterior, también sumé algunos cambios al código original para registrar los tiempos de ejecución. En este caso, los tiempos de ejecución son variables ya que, si bien el resultado final es estable, las ejecuciones difieren en sus tiempos y no arrojan un resultado predecible. 
+Luego de los ajustes propuestos en el código y de sumar la protección con Lock, el resultado del programa es siempre consistente ya que se logró administrar el acceso a una variable compartida (acumulador). Al utilizar el lock, se garantiza que solo un hilo pueda modificar acumulador a la vez, previniendo las inconsistencias observadas anteriormente.
